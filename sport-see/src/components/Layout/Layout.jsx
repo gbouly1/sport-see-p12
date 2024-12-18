@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 
 const Layout = () => {
   return (
-    <div className="max-w-[1440px] w-full m-auto">
+    <div className="max-w-[1440px] w-full min-h-screen m-auto ">
       <Header />
       <Sidebar />
     </div>
