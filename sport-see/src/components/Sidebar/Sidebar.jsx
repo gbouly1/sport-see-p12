@@ -22,7 +22,7 @@ const Sidebar = ({ setUserId, userId }) => {
           <img src={gym} alt="icon gym" />
         </li>
       </ul>
-      <p className="text-white whitespace-nowrap -rotate-90 pl-32">
+      <p className="text-white whitespace-nowrap -rotate-90 pr-32">
         Copiryght, SportSee 2020
       </p>
       <button

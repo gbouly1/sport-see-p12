@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/Sidebar";
-import ProfilePage from "../profilPage/ProfilePage";
+import ProfilePage from "../../pages/profilPage/ProfilePage";
+import Header from "../header/Header";
+import Sidebar from "../sidebar/Sidebar";
 
 const Layout = () => {
   const [userId, setUserId] = useState(12);
