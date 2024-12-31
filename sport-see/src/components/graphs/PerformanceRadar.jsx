@@ -1,71 +1,61 @@
-import React, { PureComponent } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PolarAngleAxis,
   PolarGrid,
-  PolarRadiusAxis,
   Radar,
   RadarChart,
   ResponsiveContainer,
 } from "recharts";
+import { getUserPerformance } from "../../services/api"; // Appel à l'API depuis api.js
 
-const data = [
-  {
-    subject: "Math",
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: "Chinese",
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "English",
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "Geography",
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: "Physics",
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: "History",
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+const PerformanceRadar = ({ userId }) => {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
 
-export default class PerformanceRadar extends PureComponent {
-  static demoUrl = "https://codesandbox.io/p/sandbox/simple-radar-chart-2p5sxm";
+  useEffect(() => {
+    const fetchPerformanceData = async () => {
+      try {
+        // Appel à l'API pour récupérer les données utilisateur
+        const performanceData = await getUserPerformance(userId);
 
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis />
+        // Reformater les données pour correspondre au format du RadarChart
+        const formattedData = performanceData.data.map((item) => ({
+          subject: performanceData.kind[item.kind], // Récupère le label via la clé `kind`
+          value: item.value, // Récupère la valeur de performance
+        }));
+
+        setData(formattedData);
+      } catch (err) {
+        setError("Failed to fetch performance data");
+      }
+    };
+
+    fetchPerformanceData();
+  }, [userId]); // Recharge les données si `userId` change
+
+  if (error) return <p>{error}</p>;
+  if (data.length === 0) return <p>Loading...</p>;
+
+  return (
+    <div className="bg-[#282D30] rounded shadow w-64 h-64">
+      <ResponsiveContainer width="100%" height={250}>
+        <RadarChart cx="50%" cy="50%" outerRadius="50%" data={data}>
+          <PolarGrid stroke="#fff" />
+          <PolarAngleAxis
+            dataKey="subject"
+            stroke="#fff"
+            style={{ fontSize: 12 }}
+          />
           <Radar
-            name="Mike"
-            dataKey="A"
-            stroke="#8884d8"
-            fill="#8884d8"
-            fillOpacity={0.6}
+            dataKey="value"
+            stroke="#FF0101"
+            fill="#FF0101"
+            fillOpacity={0.7}
           />
         </RadarChart>
       </ResponsiveContainer>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default PerformanceRadar;
