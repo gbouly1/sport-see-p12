@@ -1,8 +1,8 @@
 import axios from "axios";
 import {
-  mockUserData,
   mockUserActivity,
   mockUserAverageSessions,
+  mockUserData,
   mockUserPerformance,
 } from "../mocks/mockData";
 
@@ -11,7 +11,7 @@ const api = axios.create({
 });
 
 // Variable pour activer les mocks
-const useMock = process.env.REACT_APP_USE_MOCK === "false";
+const useMock = process.env.REACT_APP_USE_MOCK === "true";
 
 // Récupère les données principales
 export const getUserData = async (userId) => {
@@ -59,6 +59,7 @@ export const getUserPerformance = async (userId) => {
 
 // Récupère toutes les données en parallèle
 export const getAllUserData = async (userId) => {
+  console.log("Appel API pour userId :", userId);
   if (useMock) {
     return new Promise((resolve) => {
       setTimeout(() => {

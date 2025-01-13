@@ -14,6 +14,7 @@ const ProfilePage = ({ userId }) => {
     const fetchData = async () => {
       try {
         const data = await getAllUserData(userId);
+        console.log("Données récupérées :", data);
         setUserData(data);
       } catch (err) {
         setError("failed to load user data");
@@ -38,11 +39,11 @@ const ProfilePage = ({ userId }) => {
 
       <div className="graph-container flex flex-row justify-between">
         <div>
-          <div>
+          <div className="w-[825px] h-[325px]">
             <ActivityGraph userId={userId} />
           </div>
 
-          <div className="flex row-auto">
+          <div className="flex row-auto justify-between">
             <div>
               <AverageSessionsGraph userId={userId} />
             </div>

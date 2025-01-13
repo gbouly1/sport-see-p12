@@ -5,6 +5,7 @@ import Sidebar from "../sidebar/Sidebar";
 
 const Layout = () => {
   const [userId, setUserId] = useState(12);
+  console.log("ID utilisateur actif :", userId);
 
   return (
     <div className="max-w-[1440px] w-full min-h-screen m-auto ">

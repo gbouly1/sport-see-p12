@@ -27,7 +27,10 @@ const Sidebar = ({ setUserId, userId }) => {
       </p>
       <button
         className="opacity-0 hover:opacity-100 transition-opacity duration-300 bg-white text-black"
-        onClick={() => setUserId(userId === 12 ? 18 : 12)}
+        onClick={() => {
+          setUserId(userId === 12 ? 18 : 12);
+          console.log("Utilisateur changé :", userId === 12 ? 18 : 12); // Vérifie le changement
+        }}
       >
         Changer d'utilisateur
       </button>

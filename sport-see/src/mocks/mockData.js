@@ -38,9 +38,16 @@ export const mockUserPerformance = {
     1: "cardio",
     2: "energy",
     3: "endurance",
+    4: "force",
+    5: "intensité",
+    6: "vitesse",
   },
   data: [
     { value: 80, kind: 1 },
     { value: 120, kind: 2 },
+    { value: 100, kind: 3 },
+    { value: 60, kind: 4 },
+    { value: 180, kind: 5 },
+    { value: 125, kind: 6 },
   ],
 };
