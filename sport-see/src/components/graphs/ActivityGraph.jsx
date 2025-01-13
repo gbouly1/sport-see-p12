@@ -11,6 +11,49 @@ import {
 } from "recharts";
 import { getUserActivity } from "../../services/api";
 
+// Légende personnalisée
+const CustomLegend = ({ payload }) => {
+  return (
+    <ul className="flex space-x-4">
+      {payload.map((entry, index) => (
+        <li key={`item-${index}`} className="flex items-center space-x-1">
+          <span
+            className="inline-block w-3 h-3 rounded-full"
+            style={{ backgroundColor: entry.color }}
+          ></span>
+          <span className="text-gray-700 text-sm font-bold">{entry.value}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const kilogram = payload.find((item) => item.dataKey === "kilogram");
+    const calories = payload.find((item) => item.dataKey === "calories");
+
+    return (
+      <div
+        style={{
+          backgroundColor: "#E60000",
+          color: "#fff",
+          padding: "10px",
+          borderRadius: "5px",
+          textAlign: "center",
+        }}
+      >
+        {/* Poids */}
+        {kilogram && <p className="text-sm">{`${kilogram.value}kg`}</p>}
+        {/* Calories */}
+        {calories && <p className="text-sm">{`${calories.value}kCal`}</p>}
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const ActivityGraph = ({ userId }) => {
   const [data, setData] = useState([]);
 
@@ -36,71 +79,84 @@ const ActivityGraph = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-gray-100 rounded shadow w-full max-h-80">
-      <h2 className="text-lg ">Activité quotidienne</h2>
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-        className="bg-gray-100 rounded shadow"
-      >
+    <div className="bg-[#FBFBFB] rounded-lg shadow w-full h-[320px] p-4">
+      <h2 className="text-lg font-bold mb-4">Activité quotidienne</h2>
+      <ResponsiveContainer width="100%" height="80%">
         <BarChart
           data={data}
+          barGap={8}
           margin={{
-            top: 5,
-            right: 30,
+            top: 10,
+            right: 20,
             left: 20,
             bottom: 5,
           }}
         >
           {/* Grille */}
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid vertical={false} strokeDasharray="3 3" />
 
           {/* Axe X (jours) */}
-          <XAxis dataKey="day" tickLine={false} />
+          <XAxis
+            dataKey="day"
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: "#9B9EAC", fontSize: 14 }}
+          />
 
-          {/* Axe Y gauche (calories en kCal) */}
+          {/* Axe Y gauche (invisible pour les calories) */}
           <YAxis
             yAxisId="left"
             orientation="left"
             tickLine={false}
             axisLine={false}
+            hide={true} // Cache l'axe gauche
+            domain={["dataMin - 10", "dataMax + 10"]}
           />
+
           {/* Axe Y droite (poids en kg) */}
           <YAxis
             yAxisId="right"
             orientation="right"
             tickLine={false}
             axisLine={false}
+            tick={{ fill: "#9B9EAC", fontSize: 14 }}
+            domain={["dataMin - 1", "dataMax + 1"]}
           />
 
-          {/* Info-bulle */}
+          {/* Tooltip */}
           <Tooltip
-            formatter={(value, name) =>
-              `${value} ${name === "kilogram" ? "kg" : "kCal"}`
-            }
+            contentStyle={{ backgroundColor: "#E60000", color: "#fff" }}
+            itemStyle={{ color: "#fff" }}
+            content={<CustomTooltip />}
+            labelFormatter={() => ""}
           />
 
-          {/* Légende */}
-          <Legend verticalAlign="top" align="right" />
+          {/* Légende personnalisée */}
+          <Legend
+            verticalAlign="top"
+            align="right"
+            iconType="circle"
+            content={<CustomLegend />}
+          />
 
           {/* Barres pour le poids */}
           <Bar
-            yAxisId="right"
+            yAxisId="right" // Associe au poids
             dataKey="kilogram"
-            fill="#000"
+            fill="#282D30"
             barSize={7}
             name="Poids (kg)"
-            radius={[10, 10, 0, 0]} // Bord arrondi en haut
+            radius={[3, 3, 0, 0]} // Bord arrondi
           />
 
           {/* Barres pour les calories */}
           <Bar
-            yAxisId="left"
+            yAxisId="left" // Associe aux calories (axe gauche invisible)
             dataKey="calories"
-            fill="#FF0101"
+            fill="#E60000"
             barSize={7}
             name="Calories brûlées (kCal)"
-            radius={[10, 10, 0, 0]} // Bord arrondi en haut
+            radius={[3, 3, 0, 0]} // Bord arrondi
           />
         </BarChart>
       </ResponsiveContainer>
