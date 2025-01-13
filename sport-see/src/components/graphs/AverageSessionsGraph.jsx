@@ -2,6 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { getUserAverageSessions } from "../../services/api";
 
+// Tooltip personnalisé
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white text-black text-xs p-1 rounded">
+        <p>{`${payload[0].value} min`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const AverageSessionsGraph = ({ userId }) => {
   const [data, setData] = useState([]);
 
@@ -10,14 +23,12 @@ const AverageSessionsGraph = ({ userId }) => {
       try {
         const response = await getUserAverageSessions(userId);
 
-        // Reformater les données pour utiliser les jours abrégés
-        const formattedData = response.sessions.map((item) => {
-          const days = ["L", "M", "M", "J", "V", "S", "D"];
-          return {
-            day: days[item.day - 1], // Mappe 1 -> "L", 2 -> "M", ...
-            sessionLength: item.sessionLength,
-          };
-        });
+        // Reformater les jours pour les abréviations (Lundi, Mardi, ...)
+        const daysMap = ["L", "M", "M", "J", "V", "S", "D"];
+        const formattedData = response.sessions.map((item, index) => ({
+          day: daysMap[index],
+          sessionLength: item.sessionLength,
+        }));
 
         setData(formattedData);
       } catch (error) {
@@ -29,42 +40,47 @@ const AverageSessionsGraph = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-red-500 p-4 rounded shadow w-[250px]  relative h-full">
-      <h2 className="text-white text-sm absolute top-2 left-4">
+    <div className="bg-[#F00] p-4 rounded shadow h-[250px] w-[250px] relative">
+      <h2 className="text-white size-4 opacity-50 ">
         Durée moyenne des sessions
       </h2>
-
-      {/* Graphique */}
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer
+        width="100%"
+        height="70%"
+        className="absolute left-0 bottom-0"
+      >
         <LineChart
           data={data}
-          margin={{ top: 20, right: 10, left: 10, bottom: 5 }}
+          margin={{
+            top: 20,
+            right: 20,
+            left: 20,
+            bottom: 5,
+          }}
         >
-          {/* Axe X (jours) */}
+          {/* Axe X */}
           <XAxis
+            className="opacity-50"
             dataKey="day"
-            stroke="#fff"
-            axisLine={false}
             tickLine={false}
-            padding={{ left: 10, right: 10 }}
+            axisLine={false}
+            tick={{ fill: "#fff", fontSize: 12 }}
           />
 
-          {/* Tooltip */}
-          <Tooltip
-            contentStyle={{ backgroundColor: "white", color: "#000" }}
-            itemStyle={{ color: "#000" }}
-            formatter={(value) => `${value} min`}
-            cursor={false} // Supprime le curseur survolé
-          />
-
-          {/* Ligne principale */}
+          {/* Ligne de progression */}
           <Line
             type="monotone"
             dataKey="sessionLength"
-            stroke="#FFF"
+            stroke="#fff"
             strokeWidth={2}
-            dot={{ r: 3 }} // Points sur la ligne
-            activeDot={{ r: 6 }} // Point survolé
+            dot={{ r: 3 }}
+            activeDot={{ r: 6 }}
+          />
+
+          {/* Tooltip personnalisé */}
+          <Tooltip
+            content={<CustomTooltip />}
+            cursor={{ stroke: "rgba(0, 0, 0, 0.2)", strokeWidth: 32 }}
           />
         </LineChart>
       </ResponsiveContainer>

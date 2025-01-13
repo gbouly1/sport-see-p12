@@ -38,12 +38,10 @@ const ProfilePage = ({ userId }) => {
       </div>
 
       <div className="graph-container flex flex-row justify-between">
-        <div>
-          <div className="w-[825px] h-[325px]">
-            <ActivityGraph userId={userId} />
-          </div>
+        <div className="flex flex-col gap-10">
+          <ActivityGraph userId={userId} />
 
-          <div className="flex row-auto justify-between">
+          <div className="flex row-auto justify-between gap-8">
             <div>
               <AverageSessionsGraph userId={userId} />
             </div>

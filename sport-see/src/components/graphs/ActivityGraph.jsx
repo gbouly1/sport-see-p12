@@ -36,9 +36,13 @@ const ActivityGraph = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-gray-100 p-4 rounded shadow w-full h-[300px]">
-      <h2 className="text-lg font-bold mb-4">Activité quotidienne</h2>
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="bg-gray-100 rounded shadow w-full max-h-80">
+      <h2 className="text-lg ">Activité quotidienne</h2>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className="bg-gray-100 rounded shadow"
+      >
         <BarChart
           data={data}
           margin={{
@@ -54,15 +58,14 @@ const ActivityGraph = ({ userId }) => {
           {/* Axe X (jours) */}
           <XAxis dataKey="day" tickLine={false} />
 
-          {/* Axe Y gauche (poids en kg) */}
+          {/* Axe Y gauche (calories en kCal) */}
           <YAxis
             yAxisId="left"
             orientation="left"
             tickLine={false}
             axisLine={false}
           />
-
-          {/* Axe Y droit (calories en kCal) */}
+          {/* Axe Y droite (poids en kg) */}
           <YAxis
             yAxisId="right"
             orientation="right"
@@ -82,20 +85,20 @@ const ActivityGraph = ({ userId }) => {
 
           {/* Barres pour le poids */}
           <Bar
-            yAxisId="left"
+            yAxisId="right"
             dataKey="kilogram"
             fill="#000"
-            barSize={10}
+            barSize={7}
             name="Poids (kg)"
             radius={[10, 10, 0, 0]} // Bord arrondi en haut
           />
 
           {/* Barres pour les calories */}
           <Bar
-            yAxisId="right"
+            yAxisId="left"
             dataKey="calories"
             fill="#FF0101"
-            barSize={10}
+            barSize={7}
             name="Calories brûlées (kCal)"
             radius={[10, 10, 0, 0]} // Bord arrondi en haut
           />
