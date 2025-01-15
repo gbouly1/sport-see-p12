@@ -14,16 +14,23 @@ import { getUserActivity } from "../../services/api";
 // Légende personnalisée
 const CustomLegend = ({ payload }) => {
   return (
-    <ul className="flex space-x-4">
-      {payload.map((entry, index) => (
-        <li key={`item-${index}`} className="flex items-center space-x-1">
-          <span
-            className="inline-block w-3 h-3 rounded-full"
-            style={{ backgroundColor: entry.color }}
-          ></span>
-          <span className="text-gray-700 text-sm font-bold">{entry.value}</span>
-        </li>
-      ))}
+    <ul className="flex space-x-4 justify-between mb-4">
+      <li>
+        <h2 className="text-lg font-bold">Activité quotidienne</h2>
+      </li>
+      <div className="flex gap-3">
+        {payload.map((entry, index) => (
+          <li key={`item-${index}`} className="flex items-center space-x-1">
+            <span
+              className="inline-block w-3 h-3 rounded-full"
+              style={{ backgroundColor: entry.color }}
+            ></span>
+            <span className="text-gray-700 text-sm font-bold">
+              {entry.value}
+            </span>
+          </li>
+        ))}
+      </div>
     </ul>
   );
 };
@@ -79,9 +86,8 @@ const ActivityGraph = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-[#FBFBFB] rounded-lg shadow w-full h-[320px] p-4">
-      <h2 className="text-lg font-bold mb-4">Activité quotidienne</h2>
-      <ResponsiveContainer width="100%" height="80%">
+    <div className="bg-[#FBFBFB] rounded-lg shadow w-full h-full pb-0 p-4">
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           barGap={8}

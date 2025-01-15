@@ -3,7 +3,7 @@
 export const mockUserData = {
   id: 12,
   userInfos: {
-    firstName: "Karl",
+    firstName: "Karlito",
     lastName: "Dovineau",
     age: 31,
   },

@@ -39,7 +39,9 @@ const ScoreGraph = ({ score }) => {
         {/* Texte au centre */}
         <div className="absolute flex flex-col items-center">
           <p className="text-3xl font-bold text-black">{percentage}%</p>
-          <p className="text-sm text-gray-500">de votre objectif</p>
+          <p className="text-sm text-gray-500 max-w-[80%] text-center font-bold">
+            de votre objectif
+          </p>
         </div>
       </div>
     </div>

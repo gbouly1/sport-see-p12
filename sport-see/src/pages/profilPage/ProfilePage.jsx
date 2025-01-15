@@ -26,9 +26,9 @@ const ProfilePage = ({ userId }) => {
   if (error) return <p>{error}</p>;
   if (!userData) return <p>Loading...</p>;
   return (
-    <div className="border-red-700 border-2 w-full profil-page-container p-16">
-      <div className="flex flex-col gap-8 ">
-        <h1 className="text-5xl">
+    <div className="w-full profil-page-container p-16">
+      <div className="flex flex-col gap-8 pb-4">
+        <h1 className="text-5xl font-semibold">
           Bonjour{" "}
           <span className="text-[#FF0101]">
             {userData.mainData.userInfos.firstName}

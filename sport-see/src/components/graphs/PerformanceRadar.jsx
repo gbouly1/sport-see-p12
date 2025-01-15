@@ -38,14 +38,19 @@ const PerformanceRadar = ({ userId }) => {
 
   return (
     <div className="bg-[#282D30] rounded shadow w-64 h-64">
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="50%" data={data}>
-          <PolarGrid stroke="#fff" />
+          {/* Personnalisation des lignes radiales */}
+          <PolarGrid
+            stroke="#fff"
+            radialLines={false} // Supprime les lignes radiales (axes polaires)
+          />
+          {/* Style des étiquettes */}
           <PolarAngleAxis
             dataKey="subject"
-            stroke="#fff"
-            style={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: "#FFF" }} // Ajuste la taille et couleur des étiquettes
           />
+          {/* Graphique en radar */}
           <Radar
             dataKey="value"
             stroke="#FF0101"
