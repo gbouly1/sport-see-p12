@@ -187,12 +187,12 @@ const USER_PERFORMANCE = [
   {
     userId: 12,
     kind: {
-      1: "cardio",
-      2: "energy",
-      3: "endurance",
-      4: "strength",
-      5: "speed",
-      6: "intensity",
+      1: "Cardio",
+      2: "Energy",
+      3: "Endurance",
+      4: "Strength",
+      5: "Speed",
+      6: "Intensity",
     },
     data: [
       {
@@ -224,12 +224,12 @@ const USER_PERFORMANCE = [
   {
     userId: 18,
     kind: {
-      1: "cardio",
-      2: "energy",
-      3: "endurance",
-      4: "strength",
-      5: "speed",
-      6: "intensity",
+      1: "Cardio",
+      2: "Energy",
+      3: "Endurance",
+      4: "Strength",
+      5: "Speed",
+      6: "Intensity",
     },
     data: [
       {
