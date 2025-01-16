@@ -86,7 +86,7 @@ const ActivityGraph = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-[#FBFBFB] rounded-lg shadow w-full h-full pb-0 p-4">
+    <div className="bg-[#FBFBFB] rounded-lg shadow w-full h-full pb-4">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -116,7 +116,7 @@ const ActivityGraph = ({ userId }) => {
             tickLine={false}
             axisLine={false}
             hide={true} // Cache l'axe gauche
-            domain={["dataMin - 10", "dataMax + 10"]}
+            domain={["dataMin - 20", "dataMax + 10"]}
           />
 
           {/* Axe Y droite (poids en kg) */}

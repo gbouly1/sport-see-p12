@@ -7,7 +7,7 @@ const ScoreGraph = ({ score }) => {
   const progress = (percentage / 100) * circumference; // Longueur de la barre rouge
 
   return (
-    <div className="bg-gray-100 p-4 rounded shadow h-[250px] w-[250px] flex flex-col items-center justify-center">
+    <div className="bg-gray-100 p-4 rounded shadow w-[250px] h-full flex flex-col items-center justify-center">
       <h2 className="text-lg font-bold mb-4 self-start">Score</h2>
 
       <div className="relative flex items-center justify-center">
@@ -33,7 +33,7 @@ const ScoreGraph = ({ score }) => {
             strokeDasharray={circumference} // Taille totale du cercle
             strokeDashoffset={progress - circumference} // Calcul du progrès
             strokeLinecap="round" // Bord arrondi
-            transform="rotate(-90 18 18)" // Départ à gauche (9h)
+            transform="rotate(-90 18 18)"
           />
         </svg>
         {/* Texte au centre */}

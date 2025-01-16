@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { getUserAverageSessions } from "../../services/api";
+import "./graph.css";
 
 // Tooltip personnalisé
 const CustomTooltip = ({ active, payload }) => {
@@ -11,7 +12,6 @@ const CustomTooltip = ({ active, payload }) => {
       </div>
     );
   }
-
   return null;
 };
 
@@ -40,31 +40,32 @@ const AverageSessionsGraph = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="bg-[#F00] p-4 rounded shadow h-[250px] w-[250px] relative">
-      <h2 className="text-white size-4 opacity-50 ">
+    <div className="bg-[#F00] p-4 rounded shadow h-[250px] w-[250px] relative test">
+      <h2 className="text-white size-4 opacity-50 w-[70%] ">
         Durée moyenne des sessions
       </h2>
       <ResponsiveContainer
         width="100%"
-        height="70%"
+        height="100%"
         className="absolute left-0 bottom-0"
       >
         <LineChart
           data={data}
           margin={{
-            top: 20,
-            right: 20,
-            left: 20,
+            top: 100,
             bottom: 5,
+            left: 5,
+            right: 0, // Plus de marge latérale
           }}
         >
           {/* Axe X */}
           <XAxis
-            className="opacity-50"
+            className="x-axis-custom" // Classe pour décaler uniquement les ticks
             dataKey="day"
             tickLine={false}
             axisLine={false}
             tick={{ fill: "#fff", fontSize: 12 }}
+            tickMargin={5}
           />
 
           {/* Ligne de progression */}
@@ -73,14 +74,18 @@ const AverageSessionsGraph = ({ userId }) => {
             dataKey="sessionLength"
             stroke="#fff"
             strokeWidth={2}
-            dot={{ r: 3 }}
-            activeDot={{ r: 6 }}
+            dot={{ r: 0 }}
+            activeDot={{ r: 3 }}
           />
 
           {/* Tooltip personnalisé */}
           <Tooltip
             content={<CustomTooltip />}
-            cursor={{ stroke: "rgba(0, 0, 0, 0.2)", strokeWidth: 32 }}
+            cursor={{
+              stroke: "rgba(0, 0, 0, 0.2)",
+              strokeWidth: 45,
+              height: 400,
+            }}
           />
         </LineChart>
       </ResponsiveContainer>
