@@ -37,7 +37,7 @@ const PerformanceRadar = ({ userId }) => {
   if (data.length === 0) return <p>Loading...</p>;
 
   return (
-    <div className="bg-[#282D30] rounded shadow w-64 h-64">
+    <div className="bg-[#282D30] rounded shadow w-48 h-64 custom-md:w-64">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="50%" data={data}>
           {/* Personnalisation des lignes radiales */}

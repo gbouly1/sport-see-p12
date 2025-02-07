@@ -89,7 +89,7 @@ const AverageSessionsGraph = ({ userId }) => {
   }
 
   return (
-    <div className="bg-[#F00]  rounded shadow h-[250px] w-[250px] relative ">
+    <div className="bg-[#F00]  rounded shadow h-64 w-48 relative custom-md:w-64">
       {/* Légende personnalisée */}
       <CustomLegend />
       <ResponsiveContainer width="100%" height="100%">

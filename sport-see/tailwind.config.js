@@ -11,6 +11,9 @@ module.exports = {
         secondary: "#282D30", // Gris foncé
         background: "#FBFBFB", // Fond clair
       },
+      screens: {
+        "custom-md": "1350px",
+      },
     },
   },
   plugins: [],

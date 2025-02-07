@@ -7,7 +7,7 @@ const ScoreGraph = ({ score }) => {
   const progress = (percentage / 100) * circumference; // Longueur de la barre rouge
 
   return (
-    <div className="bg-gray-100 p-4 rounded shadow w-[250px] h-full flex flex-col items-center justify-center">
+    <div className="bg-gray-100 p-4 rounded shadow w-48 h-full flex flex-col items-center justify-center custom-md:w-64">
       <h2 className="text-lg font-bold mb-4 self-start">Score</h2>
 
       <div className="relative flex items-center justify-center">

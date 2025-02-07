@@ -37,7 +37,7 @@ const ProfilePage = ({ userId }) => {
         <p>Félicitations ! Vous avez explosé vos objectifs hier</p>
       </div>
 
-      <div className=" flex flex-row justify-between w-full">
+      <div className=" flex flex-row justify-between w-full gap-5">
         <div className="flex flex-col gap-10">
           <ActivityGraph userId={userId} />
 
@@ -45,7 +45,7 @@ const ProfilePage = ({ userId }) => {
             <div>
               <AverageSessionsGraph userId={userId} />
             </div>
-            <div className="min-w-50">
+            <div>
               <PerformanceRadar userId={userId} />
             </div>
             <div>
