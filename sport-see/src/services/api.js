@@ -11,7 +11,7 @@ const api = axios.create({
 });
 
 // Variable pour activer les mocks
-const useMock = process.env.REACT_APP_USE_MOCK === "true";
+const useMock = process.env.REACT_APP_USE_MOCK === "false";
 
 // Récupère les données principales
 export const getUserData = async (userId) => {
