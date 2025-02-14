@@ -38,9 +38,9 @@ const ProfilePage = ({ userId }) => {
       <p className="w-full flex justify-center items-center">Loading...</p>
     );
   return (
-    <div className="pt-6 pl-6 w-full profil-page-container custom-md:pl-14 custom-md:pt-10">
+    <div className="pt-6 pl-6 w-full profil-page-container custom-md:pl-14 custom-md:pt-8">
       <div className="gap-4 flex flex-col custom-md:gap-4 pb-4">
-        <h1 className="text-2xl font-semibold custom-md:text-5xl">
+        <h1 className="text-2xl font-semibold custom-md:text-5xl h-md:text-5xl">
           Bonjour{" "}
           <span className="text-[#FF0101]">
             {userData.mainData.userInfos.firstName}
@@ -67,12 +67,7 @@ const ProfilePage = ({ userId }) => {
             </div>
           </div>
         </div>
-        <KeyDataCard
-          calorie={userData.mainData.keyData.calorieCount}
-          protein={userData.mainData.keyData.proteinCount}
-          carbohydrate={userData.mainData.keyData.carbohydrateCount}
-          lipid={userData.mainData.keyData.lipidCount}
-        />
+        <KeyDataCard keyData={userData.mainData.keyData} />
       </div>
     </div>
   );

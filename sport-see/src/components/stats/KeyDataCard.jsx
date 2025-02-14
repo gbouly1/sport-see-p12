@@ -1,44 +1,39 @@
 import React from "react";
-import calories from "../../assets/icons/calories.png";
-import carbs from "../../assets/icons/carbs.png";
-import fat from "../../assets/icons/fat.png";
-import proteins from "../../assets/icons/protein.png";
+import caloriesIcon from "../../assets/icons/calories.png";
+import carbsIcon from "../../assets/icons/carbs.png";
+import fatIcon from "../../assets/icons/fat.png";
+import proteinsIcon from "../../assets/icons/protein.png";
 
-const KeyDataCard = ({ calorie, protein, carbohydrate, lipid }) => {
+const KeyDataCard = ({ keyData }) => {
+  const icons = {
+    calorieCount: { icon: caloriesIcon, unit: "kCal", label: "Calories" },
+    proteinCount: { icon: proteinsIcon, unit: "g", label: "Protéines" },
+    carbohydrateCount: { icon: carbsIcon, unit: "g", label: "Glucides" },
+    lipidCount: { icon: fatIcon, unit: "g", label: "Lipides" },
+  };
+
   return (
     <div className="mr-3 flex flex-col gap-10">
-      <div className="text-black flex items-center w-48 h-28 pl-[15%] bg-[#FBFBFB] rounded-md">
-        <img src={calories} alt="calories icon" className="w-[60px] h-[60px]" />
-        <p className="pl-2 font-bold text-xl flex flex-col">
-          {calorie}kCal
-          <br />
-          <span className="text-[#74798C] font-medium text-sm ">Calories</span>
-        </p>
-      </div>
-      <div className="text-black flex items-center w-48 h-28 pl-[15%] bg-[#FBFBFB] rounded-md">
-        <img src={proteins} alt="calories icon" className="w-[60px] h-[60px]" />
-        <p className="pl-2 font-bold text-xl flex flex-col">
-          {protein}g
-          <br />
-          <span className="text-[#74798C] font-medium text-sm ">Proteines</span>
-        </p>
-      </div>
-      <div className="text-black flex items-center w-48 h-28 pl-[15%] bg-[#FBFBFB] rounded-md">
-        <img src={carbs} alt="calories icon" className="w-[60px] h-[60px]" />
-        <p className="pl-2 font-bold text-xl flex flex-col">
-          {carbohydrate}g
-          <br />
-          <span className="text-[#74798C] font-medium text-sm ">Glucides</span>
-        </p>
-      </div>
-      <div className="text-black flex items-center w-48 h-28 pl-[15%] bg-[#FBFBFB] rounded-md">
-        <img src={fat} alt="calories icon" className="w-[60px] h-[60px]" />
-        <p className="pl-2 font-bold text-xl flex flex-col">
-          {lipid}g
-          <br />
-          <span className="text-[#74798C] font-medium text-sm ">Lipides</span>
-        </p>
-      </div>
+      {Object.entries(keyData).map(([key, value]) => (
+        <div
+          key={key}
+          className="text-black flex items-center w-48 h-28 pl-[15%] bg-[#FBFBFB] rounded-md"
+        >
+          <img
+            src={icons[key].icon}
+            alt={`${icons[key].label} icon`}
+            className="w-[60px] h-[60px]"
+          />
+          <p className="pl-2 font-bold text-xl flex flex-col">
+            {value}
+            {icons[key].unit}
+            <br />
+            <span className="text-[#74798C] font-medium text-sm">
+              {icons[key].label}
+            </span>
+          </p>
+        </div>
+      ))}
     </div>
   );
 };
