@@ -19,15 +19,15 @@ const ScoreGraph = ({ score }) => {
             cy="18"
             r={radius}
             fill="none"
-            stroke="#e6e6e6"
-            strokeWidth="2" // Épaisseur augmentée pour un style plus réaliste
+            stroke="##FBFBFB"
+            strokeWidth="0" // Épaisseur augmentée pour un style plus réaliste
           />
           {/* Cercle de progression (rouge) */}
           <circle
             cx="18"
             cy="18"
             r={radius}
-            fill="none"
+            fill="#fff"
             stroke="#FF0101"
             strokeWidth="2" // Même épaisseur que le cercle de fond
             strokeDasharray={circumference} // Taille totale du cercle

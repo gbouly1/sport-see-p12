@@ -17,16 +17,28 @@ const ProfilePage = ({ userId }) => {
         console.log("Données récupérées :", data);
         setUserData(data);
       } catch (err) {
-        setError("failed to load user data");
+        setError(
+          "Une erreur est survenue. Impossible de charger les données, veuillez réessayer plus tard."
+        );
       }
     };
     fetchData();
   }, [userId]);
 
-  if (error) return <p>{error}</p>;
-  if (!userData) return <p>Loading...</p>;
+  if (error)
+    return (
+      <div className="w-full flex justify-center items-center">
+        <p className="text-red-700 text-center w-9/12 font-bold text-2xl">
+          {error}
+        </p>
+      </div>
+    );
+  if (!userData)
+    return (
+      <p className="w-full flex justify-center items-center">Loading...</p>
+    );
   return (
-    <div className="w-full profil-page-container p-16">
+    <div className="w-full profil-page-container p-12">
       <div className="flex flex-col gap-8 pb-4">
         <h1 className="text-5xl font-semibold">
           Bonjour{" "}
