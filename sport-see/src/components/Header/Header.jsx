@@ -3,7 +3,7 @@ import logo from "../../assets/images/logo.png";
 
 const Header = () => {
   return (
-    <div className="bg-black h-[90px] flex justify-between items-center">
+    <div className="bg-black h-[70px] flex justify-between items-center h-lg:h-[90px] ">
       <img src={logo} alt="logo" className="h-16 w-auto object-contain pl-3" />
       <nav className=" flex w-full">
         <ul className="w-full text-white flex justify-center gap-[20%]">

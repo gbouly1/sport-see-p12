@@ -6,7 +6,7 @@ import proteins from "../../assets/icons/protein.png";
 
 const KeyDataCard = ({ calorie, protein, carbohydrate, lipid }) => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="mr-3 flex flex-col gap-10">
       <div className="text-black flex items-center w-48 h-28 pl-[15%] bg-[#FBFBFB] rounded-md">
         <img src={calories} alt="calories icon" className="w-[60px] h-[60px]" />
         <p className="pl-2 font-bold text-xl flex flex-col">

@@ -38,9 +38,9 @@ const ProfilePage = ({ userId }) => {
       <p className="w-full flex justify-center items-center">Loading...</p>
     );
   return (
-    <div className="w-full profil-page-container p-12">
-      <div className="flex flex-col gap-8 pb-4">
-        <h1 className="text-5xl font-semibold">
+    <div className="pt-6 pl-6 w-full profil-page-container custom-md:pl-14 custom-md:pt-10">
+      <div className="gap-4 flex flex-col custom-md:gap-4 pb-4">
+        <h1 className="text-2xl font-semibold custom-md:text-5xl">
           Bonjour{" "}
           <span className="text-[#FF0101]">
             {userData.mainData.userInfos.firstName}

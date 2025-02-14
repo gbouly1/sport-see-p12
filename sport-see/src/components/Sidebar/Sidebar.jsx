@@ -7,7 +7,7 @@ import "./sidebar.css";
 
 const Sidebar = ({ setUserId, userId }) => {
   return (
-    <aside className="bg-black w-28 min-h-screen flex items-center flex-col justify-around">
+    <aside className="bg-black w-28 min-h-[90vh] flex items-center flex-col justify-around h-md:min-h-[90vh]">
       <ul className="icons-list gap-5 flex flex-col">
         <li>
           <img src={yoga} alt="icon yoga" />
@@ -22,7 +22,7 @@ const Sidebar = ({ setUserId, userId }) => {
           <img src={gym} alt="icon gym" />
         </li>
       </ul>
-      <p className="text-white whitespace-nowrap -rotate-90 pr-32">
+      <p className="text-white whitespace-nowrap -rotate-90 custom-md:pr-32">
         Copiryght, SportSee 2020
       </p>
       <button

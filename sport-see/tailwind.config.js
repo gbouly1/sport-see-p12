@@ -13,6 +13,8 @@ module.exports = {
       },
       screens: {
         "custom-md": "1350px",
+        "h-md": { raw: "(min-height: 800px)" },
+        "h-lg": { raw: "(min-height: 900px)" },
       },
     },
   },

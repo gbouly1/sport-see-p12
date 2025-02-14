@@ -7,7 +7,7 @@ const Layout = () => {
   const [userId, setUserId] = useState(12);
 
   return (
-    <div className="max-w-[1440px] w-full min-h-screen m-auto ">
+    <div className="max-w-[1440px] w-full min-h-[90vh] m-auto ">
       <Header />
       <div className="flex row">
         <Sidebar setUserId={setUserId} userId={userId} />
